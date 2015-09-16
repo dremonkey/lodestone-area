@@ -1,0 +1,10 @@
+[package]
+name = "lodestone-area"
+version = "0.1.0"
+authors = ["dremonkey <a.deutmeyer@gmail.com>"]
+
+[dependencies.lodestone-core]
+path = "../lodestone-core"
+
+[dependencies.lodestone-polygon]
+path = "../lodestone-polygon"
