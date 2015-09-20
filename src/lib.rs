@@ -11,13 +11,13 @@ pub type Position = Vec<f64>;
 pub fn polygon_area(polygon: &FeaturePolygon) -> f64 {
   
   let rings = polygon.coordinates();
-  let mut iter = rings.into_iter();
+  let mut iter = rings.iter();
   let mut area = ring_area(iter.next().unwrap());
   
   loop {
     match iter.next() {
       Some(ring) => {
-        area -= ring_area(ring);
+        area -= ring_area(ring).abs();
       },
       None => break
     }
@@ -37,7 +37,7 @@ pub fn polygon_area(polygon: &FeaturePolygon) -> f64 {
 ///     Laboratory, Pasadena, CA, June 2007 http://trs-new.jpl.nasa.gov/dspace/handle/2014/40409
 pub fn ring_area(coords: &Vec<Position>) -> f64 {
   let mut area = 0.0;
-  let mut iter = coords.into_iter().peekable();
+  let mut iter = coords.iter().peekable();
 
   loop {
     let p1 = iter.next().unwrap();
